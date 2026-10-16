@@ -1,10 +1,10 @@
 # Homelab
 
-The map of my DevOps work. Each project is documented from **topology** → **architecture** → **design decisions** → **code** → **production**.
+The map of my DevOps work. Each project is documented from **topology** → **architecture** → **design decisions** → **code** → **production** as it's built.
 
 ← [Return to Overview](https://github.com/Buildeployship)
 
-## Topology
+## Service Topology
 
 ```
 ┌──────────────────────────────────────────────────────────────────┐
@@ -12,10 +12,9 @@ The map of my DevOps work. Each project is documented from **topology** → **ar
 │                                                                  │
 │                       ┌─────────────────┐  ┌─────────────────┐   │
 │                       │    GitLab CE    │  │ Loki · Grafana  │   │
-│                       │   self-hosted   │  │  Tempo · Mimir  │   │
-│                       └────────┬────────┘  │  Alloy · OTel   │   │
-│                                v           └────────┬────────┘   │
-│                       ┌─────────────────┐           │            │
+│                       └────────┬────────┘  │  Tempo · Mimir  │   │
+│                                v           │  Alloy · OTel   │   │
+│                       ┌─────────────────┐  └────────┬────────┘   │
 │                       │  GitLab Runner  │           │            │
 │                       │ Docker executor │           │            │
 │                       └────────┬────────┘           │            │
@@ -31,7 +30,7 @@ The map of my DevOps work. Each project is documented from **topology** → **ar
 │                                v push               v            │
 │                       ┌─────────────────┐  ┌─────────────────┐   │
 │                       │ GitLab Registry │─>│ Nomad · Consul  │   │
-│                       │  GitHub mirror  │  │ mTLS · homelab  │   │
+│                       │  image storage  │  │ mTLS · homelab  │   │
 │                       └─────────────────┘  │ manual job run  │   │
 │                                            └─────────────────┘   │
 │                                                                  │
@@ -60,4 +59,4 @@ Go webhook relay delivered through a multi-stage pipeline, deployed to on-premis
 ### [k8s-terraform-cicd-aws](https://github.com/Buildeployship/k8s-terraform-cicd-aws)
 In progress: Kubernetes on AWS, provisioned with Terraform and delivered through CI/CD.
 
-`Kubernetes` `Terraform` `AWS` `CI/CD`
+`Kubernetes` `Terraform` `AWS` `GitLab CI/CD`
